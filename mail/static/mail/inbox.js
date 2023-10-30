@@ -119,7 +119,7 @@ function view_email(id, mailbox) {
       get_email = email;
 
       const isnot_sentmailbox = mailbox !== "sent";
-      const archive_div = `<button class="fs-5 button border-0 rounded px-4 py-2 fw-normal" id="archive">
+      const archive_div = `<button class="fs-4 button border-0 rounded px-4 py-2 fw-normal" id="archive">
       <i class="fa-solid fa-box-archive me-1"></i> ${
         mailbox === "archive" ? "unarchive" : "archive"
       }
@@ -127,7 +127,7 @@ function view_email(id, mailbox) {
 
       const box = document.createElement("div");
       box.innerHTML = `<div class="py-3 d-flex justify-content-between">     
-        <button class="fs-5 border-0 bg-transparent p-0"><i class="fa-solid fa-arrow-left cursor-pointer" id="go-back"></i></button>     
+        <button class="fs-4 border-0 bg-transparent p-0"><i class="fa-solid fa-arrow-left cursor-pointer" id="go-back"></i></button>     
         ${isnot_sentmailbox ? archive_div : ""}
         </div>
         <div class="py-2">
@@ -151,7 +151,7 @@ function view_email(id, mailbox) {
             <p class="py-4 fs-4 m-0">${email.body}</p>
           </div>
           <div class="border-top py-3">
-            <button class="button border-0 rounded fs-5 px-4 py-2 fw-normal" id="reply">
+            <button class="button border-0 rounded fs-4 px-4 py-2 fw-normal" id="reply">
               <i class="fa-solid fa-reply me-1"></i> Reply
             </button>
           </div>
