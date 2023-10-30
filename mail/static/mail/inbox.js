@@ -241,14 +241,13 @@ function send_email(event) {
     }),
   })
     .then((response) => {
+      console.log(response);
+      response.json();
       let status = "";
       response.ok
         ? (status = "Email sent succesfully")
         : (status = "Failed sending email");
       console.log(response.status + ": " + status);
-      response.json();
     })
-    .then(() => {
-      load_mailbox("sent");
-    });
+    .then(() => load_mailbox("sent"));
 }
