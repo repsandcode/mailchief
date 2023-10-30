@@ -26,6 +26,11 @@ function compose_email() {
   document.querySelector("#compose-subject").value = "";
   document.querySelector("#compose-body").value = "";
 
+  const submitButton = document.querySelector(
+    "input[type=submit].btn.btn-primary"
+  );
+  submitButton.value = `Send`;
+
   document.querySelector("#compose-form").onsubmit = send_email;
 }
 
@@ -54,7 +59,7 @@ function reply_email(email) {
 
   // Pre-fill the body of the email with a line like "On Jan 1 2020, 12:00 AM foo@example.com wrote:"
   // followed by the original text of the email.
-  body.value = "";
+  body.innerText = "";
   body.value = `On ${email.timestamp} ${email.sender} wrote:
   
 ${email.body}`;
@@ -89,6 +94,7 @@ function view_email(id, mailbox) {
   document.querySelector("#emails-view").style.display = "none";
   document.querySelector("#compose-view").style.display = "none";
   document.querySelector("#email").style.display = "block";
+  const user_email = document.querySelector("h2").innerText;
   let get_email = "";
 
   // make the email read
@@ -133,7 +139,8 @@ function view_email(id, mailbox) {
             <span class="text-muted">to:
               ${email.recipients
                 .map((r) => {
-                  if (r === email.user) return "me";
+                  if (r == user_email) return "me";
+                  console.log(r, user_email);
                   return r;
                 })
                 .join(", ")}
