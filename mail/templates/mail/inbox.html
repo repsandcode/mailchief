@@ -5,11 +5,11 @@
 <h2 class="fw-light my-5">{{ request.user.email }}</h2>
 
 <div class="mb-2">
-    <button class="fs-5 btn btn-md btn-outline-primary" id="inbox">Inbox</button>
-    <button class="fs-5 btn btn-md btn-outline-primary" id="compose">Compose</button>
-    <button class="fs-5 btn btn-md btn-outline-primary" id="sent">Sent</button>
-    <button class="fs-5 btn btn-md btn-outline-primary" id="archived">Archived</button>
-    <a class="fs-5 btn btn-md btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <button class="fs-4 btn btn-md btn-outline-primary" id="inbox">Inbox</button>
+    <button class="fs-4 btn btn-md btn-outline-primary" id="compose">Compose</button>
+    <button class="fs-4 btn btn-md btn-outline-primary" id="sent">Sent</button>
+    <button class="fs-4 btn btn-md btn-outline-primary" id="archived">Archived</button>
+    <a class="fs-4 btn btn-md btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
 </div>
 <hr>
 
@@ -19,19 +19,22 @@
 </div>
 
 <div id="compose-view">
-    <h3>New Email</h3>
+    <h3 class="mt-2 py-3">New Email</h3>
     <form id="compose-form">
-        <div class="form-group">
-            From: <input disabled class="form-control" value="{{ request.user.email }}">
+        <div class="input-group fs-4">
+            <span class="p-0 input-group-text fs-4 border-0 bg-transparent">From: </span>
+            <input disabled class="form-control p-3 fs-4 border-0 bg-transparent" value="{{ request.user.email }}">
         </div>
-        <div class="form-group">
-            To: <input id="compose-recipients" class="form-control">
+        <div class="input-group fs-4 mb-4">
+            <span class="p-0 me-3 input-group-text fs-4 border-0 bg-transparent">To: </span>
+            <input id="compose-recipients" class="form-control p-3 fs-4 rounded bg-transparent">
         </div>
-        <div class="form-group">
-            <input class="form-control" id="compose-subject" placeholder="Subject">
+        <div class="input-group mb-4">
+            <input class="form-control p-3 fs-4" id="compose-subject" placeholder="Subject">
         </div>
-        <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
-        <input type="submit" class="btn btn-primary" />
+        <textarea class="form-control p-3 fs-4 mb-3" id="compose-body" placeholder="Body"
+            style="min-height: 200px;"></textarea>
+        <input type="submit" class="btn btn-primary float-end px-4 py-2 fs-4" value="Send" />
     </form>
 </div>
 {% endblock %}
