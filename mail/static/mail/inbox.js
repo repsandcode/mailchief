@@ -192,7 +192,7 @@ function load_mailbox(mailbox) {
   document.querySelector("#email").style.display = "none";
 
   // Show the mailbox name
-  document.querySelector("#emails-view").innerHTML = `<h3>${
+  document.querySelector("#emails-view").innerHTML = `<h3 class="mt-2 py-3">${
     mailbox.charAt(0).toUpperCase() + mailbox.slice(1)
   }</h3>`;
 
@@ -212,12 +212,12 @@ function load_mailbox(mailbox) {
             email.read ? "list-group-item-light" : ""
           }">
             <div class="d-flex justify-content-between">
-              <p class="${email.read ? "" : "font-weight-bold"} m-0">${
+              <p class="fs-4 fw-normal ${email.read ? "" : "fw-medium"} m-0">${
             email.sender
           }</p>
-              <span class="text-muted">${email.timestamp}</span>
+              <span class="fs-6 text-black-50">${email.timestamp}</span>
             </div>
-            <p class="m-0 flex-grow-1">${email.subject}</p>
+            <p class="fs-5 m-0 flex-grow-1">${email.subject}</p>
           </div>`;
         box.addEventListener("click", () => view_email(email.id, mailbox));
         document.querySelector("#emails-view").append(box);

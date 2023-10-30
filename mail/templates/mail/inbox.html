@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block body %}
-<h2>{{ request.user.email }}</h2>
+<h2 class="fw-light my-5">{{ request.user.email }}</h2>
 
-<button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
-<button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
-<button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-<button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
-<a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+<div class="mb-2">
+    <button class="fs-5 btn btn-md btn-outline-primary" id="inbox">Inbox</button>
+    <button class="fs-5 btn btn-md btn-outline-primary" id="compose">Compose</button>
+    <button class="fs-5 btn btn-md btn-outline-primary" id="sent">Sent</button>
+    <button class="fs-5 btn btn-md btn-outline-primary" id="archived">Archived</button>
+    <a class="fs-5 btn btn-md btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+</div>
 <hr>
 
 <div id="email"></div>
