@@ -22,9 +22,17 @@ function compose_email() {
   document.querySelector("#compose-view").style.display = "block";
 
   // Clear out composition fields
-  document.querySelector("#compose-recipients").value = "";
-  document.querySelector("#compose-subject").value = "";
-  document.querySelector("#compose-body").value = "";
+  const recipients = document.querySelector("#compose-recipients");
+  const subject = document.querySelector("#compose-subject");
+  const body = document.querySelector("#compose-body");
+
+  recipients.value = "";
+  subject.value = "";
+  body.value = "";
+
+  recipients.setAttribute("required", "");
+  subject.setAttribute("required", "");
+  body.setAttribute("required", "");
 
   const submitButton = document.querySelector(
     "input[type=submit].btn.btn-primary"
@@ -44,6 +52,10 @@ function reply_email(email) {
   const recipients = document.querySelector("#compose-recipients");
   const subject = document.querySelector("#compose-subject");
   const body = document.querySelector("#compose-body");
+
+  recipients.setAttribute("required", "");
+  subject.setAttribute("required", "");
+  body.setAttribute("required", "");
 
   // Pre-fill the composition form with the recipient field set to whoever sent the original email.
   if (current_user === email.sender) {
