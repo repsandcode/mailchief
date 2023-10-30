@@ -119,24 +119,25 @@ function view_email(id, mailbox) {
       get_email = email;
 
       const isnot_sentmailbox = mailbox !== "sent";
-      const archive_div = `<button class="button border-0 rounded px-3 py-2 fw-normal" id="archive">
+      const archive_div = `<button class="fs-5 button border-0 rounded px-4 py-2 fw-normal" id="archive">
       <i class="fa-solid fa-box-archive me-1"></i> ${
         mailbox === "archive" ? "unarchive" : "archive"
       }
       </button>`;
 
       const box = document.createElement("div");
-      box.innerHTML = `<div class="py-3 border-bottom d-flex justify-content-between">     
+      box.innerHTML = `<div class="py-3 d-flex justify-content-between">     
         <button class="fs-5 border-0 bg-transparent p-0"><i class="fa-solid fa-arrow-left cursor-pointer" id="go-back"></i></button>     
         ${isnot_sentmailbox ? archive_div : ""}
         </div>
-        <div class="py-3">
+        <div class="py-2">
+          <h3 class="display-6 pt-3 pb-4">${email.subject}</h3>
           <div class="">
             <div class="d-flex justify-content-between">
-              <p class="mb-0">${email.sender}</p>
-              <span class="text-muted">${email.timestamp}</span>
+              <p class="fs-4 mb-0">${email.sender}</p>
+              <span class="fs-5 text-muted">${email.timestamp}</span>
             </div>
-            <span class="text-muted">to:
+            <span class="fs-5 text-muted">to:
               ${email.recipients
                 .map((r) => {
                   if (r == user_email) return "me";
@@ -146,12 +147,11 @@ function view_email(id, mailbox) {
                 .join(", ")}
             </span>
           </div>
-          <div class="py-4">
-            <h3 class="mb-4">${email.subject}</h3>
-            <p class="m-0">${email.body}</p>
+          <div class="py-4 mb-5">
+            <p class="py-4 fs-4 m-0">${email.body}</p>
           </div>
           <div class="border-top py-3">
-            <button class="button border-0 rounded px-3 py-2 fw-normal" id="reply">
+            <button class="button border-0 rounded fs-5 px-4 py-2 fw-normal" id="reply">
               <i class="fa-solid fa-reply me-1"></i> Reply
             </button>
           </div>
@@ -215,7 +215,7 @@ function load_mailbox(mailbox) {
               <p class="fs-4 fw-normal ${email.read ? "" : "fw-medium"} m-0">${
             email.sender
           }</p>
-              <span class="fs-6 text-black-50">${email.timestamp}</span>
+              <span class="fs-5 text-black-50">${email.timestamp}</span>
             </div>
             <p class="fs-5 m-0 flex-grow-1">${email.subject}</p>
           </div>`;
