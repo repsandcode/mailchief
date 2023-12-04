@@ -170,13 +170,13 @@ function view_email(id, mailbox) {
         </div>
       `;
 
-      const displayed_email = document.querySelector("#email");
-      if (displayed_email.childElementCount > 0) {
-        while (displayed_email.firstChild) {
-          displayed_email.removeChild(displayed_email.firstChild);
+      const emails_view = document.querySelector("#email");
+      if (emails_view.childElementCount > 0) {
+        while (emails_view.firstChild) {
+          emails_view.removeChild(emails_view.firstChild);
         }
       }
-      displayed_email.append(box);
+      emails_view.append(box);
     })
     .then(() => {
       try {
@@ -203,8 +203,17 @@ function load_mailbox(mailbox) {
   document.querySelector("#compose-view").style.display = "none";
   document.querySelector("#email").style.display = "none";
 
+  const emails_view = document.querySelector("#emails-view");
+  if (emails_view.childElementCount > 0) {
+    while (emails_view.firstChild) {
+      emails_view.removeChild(emails_view.firstChild);
+    }
+  }
+
   // Show the mailbox name
-  document.querySelector("#emails-view").innerHTML = `<h3 class="mt-2 py-3">${
+  document.querySelector(
+    "#emails-view-title"
+  ).innerHTML = `<h3 class="mt-2 py-3">${
     mailbox.charAt(0).toUpperCase() + mailbox.slice(1)
   }</h3>`;
 
@@ -215,23 +224,26 @@ function load_mailbox(mailbox) {
       console.log(emails);
 
       emails.forEach((email) => {
-        const box = document.createElement("div");
-        box.classList.add("list-group", "my-2");
+        const box = document.createElement("li");
+        box.classList.add("list-group-item");
         box.role = "button";
+
+        if (email.read) {
+          box.classList.add("list-group-item-light");
+        }
+
         box.innerHTML =
           // recipient, subject, timestamp
-          `<div class="list-group-item ${
-            email.read ? "list-group-item-light" : ""
-          }">
-            <div class="d-flex justify-content-between">
+          `<div class="d-flex justify-content-between">
               <p class="fs-4 fw-normal ${email.read ? "" : "fw-medium"} m-0">${
             email.sender
           }</p>
               <span class="fs-5 text-black-50">${email.timestamp}</span>
             </div>
-            <p class="fs-5 m-0 flex-grow-1">${email.subject}</p>
-          </div>`;
+          <p class="fs-5 m-0 flex-grow-1">${email.subject}</p>`;
+
         box.addEventListener("click", () => view_email(email.id, mailbox));
+
         document.querySelector("#emails-view").append(box);
       });
     });

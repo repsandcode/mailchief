@@ -13,12 +13,14 @@
         <button class="fs-4 btn btn-md btn-outline-primary" id="archived">Archived</button>
         <a class="fs-4 btn btn-md btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
     </div>
+
     <hr>
 
     <div id="email"></div>
 
-    <div id="emails-view">
-    </div>
+    <div id="emails-view-title"></div>
+    <ul id="emails-view" class="list-group">
+    </ul>
 
     <div id="compose-view">
         <h3 class="mt-2 py-3">New Email</h3>
